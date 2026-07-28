@@ -1,0 +1,19 @@
+# secrets & local env
+.env
+*.env
+!*.env.sample
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# build artifacts
+*.xasm
+*.xlib

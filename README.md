@@ -11,7 +11,7 @@ These skills are the opposite: every keyword, type name and identifier is
 …), matching a project configured with English as its development language.
 
 Every pattern here was written for, and verified by deploying to, a real
-production Element 9.2 application — not reconstructed from documentation.
+production Element application (platform 9.2, then 10.0) — not reconstructed from documentation.
 
 ## Skills
 
@@ -36,7 +36,7 @@ optional `references/` and `scripts/`. Nothing is compiled.
 
 ## Scope
 
-- **Target:** 1C:Enterprise.Element (xBSL), platform 9.2, English development language.
+- **Target:** 1C:Enterprise.Element (xBSL), platform 9.2 and 10.0, English development language.
 - **Not** for classic 1C:Enterprise (BSL, `Procedure`/`&AtServer`/DCS/config XML).
   That is a different language and platform.
 - The authoritative source for API/type names is the Element documentation. These

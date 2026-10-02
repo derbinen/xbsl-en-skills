@@ -89,6 +89,24 @@ secret to disk as part of deploy — that belongs in the app's secure storage.
   to an app that was handed off for testing.
 - **Dump before deploy** if you rely on snapshots — the platform keeps history, but a
   local dump is cheap insurance before a switch.
+- **A failed apply leaves the previous build running.** The switch is refused as a whole:
+  the application stays `Running` on its old version, so the only sign of failure is the
+  apply error. Never report success from the status alone.
+- **An enumeration value still stored in data cannot be removed.** Apply fails with
+  *"cannot delete enumeration items … data in the table … uses these values"*. Change the
+  stored values first (e.g. re-pick the setting in the app), then deploy the removal.
+- **Doubled apostrophes are not accepted in YAML strings.** A single-quoted scalar with
+  `''` inside (`'the users'' browsers'`) fails apply with an unhelpful *"invalid value for
+  type Map … value not set"*. Reword the text or use double quotes.
+- **A property given twice in one component** (two `HorizontalStretch:` lines, easy to
+  produce when scripting YAML edits) is an apply error, not a build error — the archive
+  builds and uploads fine.
+- **An unspecific apply error** (*"unknown error INIT_PREPARE_APPLY_PROJECT_TO_APP"*):
+  run the switch once more — the second attempt reports the real message with the file
+  and line.
+- **Platform 10.0 needs no changes to the build.** Its assemblies keep the same descriptor
+  (`ManifestVersion: 1.0`, project kind, vendor, name, version) and layout; the platform
+  version is the application's, and the compatibility mode stays in the project file.
 
 ## Status / restart / stop
 

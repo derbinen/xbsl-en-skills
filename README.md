@@ -17,7 +17,7 @@ production Element application (platform 9.2, then 10.0) — not reconstructed f
 
 | Skill | What it does |
 |-------|--------------|
-| [`xbsl-en-deploy`](xbsl-en-deploy/) | Clean-room guide to deploying an Element project to the cloud (1cmycloud) via the Console API: build the `.xasm`, upload it, switch the application to it, wait for `Running`. Documents the API and the operational gotchas; bring your own build script. |
+| [`xbsl-en-deploy`](xbsl-en-deploy/) | Deploying an Element project to the cloud (1cmycloud) via the console API v2.1: a dependency-free Node.js script packs the sources, lets the console build and number them, updates the application, follows the update task and reports the platform's apply error — plus the operational gotchas learned in production. |
 
 ## Install
 
@@ -32,11 +32,14 @@ cp -r xbsl-en-deploy  ~/.claude/skills/
 ```
 
 A skill is just a folder with a `SKILL.md` (YAML front-matter + instructions) and
-optional `references/` and `scripts/`. Nothing is compiled.
+optional `references/` and `scripts/`. Nothing is compiled. The deploy script needs
+Node.js 20.12 or newer and no packages.
 
 ## Scope
 
-- **Target:** 1C:Enterprise.Element (xBSL), platform 9.2 and 10.0, English development language.
+- **Target:** 1C:Enterprise.Element (xBSL) with English as the development language. The
+  patterns come from an application on platform 9.2 and then 10.0; the deploy script is
+  verified on 10.0 with the console API v2.1.
 - **Not** for classic 1C:Enterprise (BSL, `Procedure`/`&AtServer`/DCS/config XML).
   That is a different language and platform.
 - The authoritative source for API/type names is the Element documentation. These

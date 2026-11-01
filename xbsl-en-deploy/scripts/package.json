@@ -1,0 +1,17 @@
+{
+  "name": "xbsl-en-deploy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deploys the sources of a 1C:Enterprise.Element project to a cloud application through the console API v2.1",
+  "type": "module",
+  "bin": {
+    "xbsl-en-deploy": "deploy.mjs"
+  },
+  "scripts": {
+    "deploy": "node deploy.mjs"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "license": "MIT"
+}

@@ -27,6 +27,8 @@ import { parseArgs } from 'node:util';
 import { ConsoleClient } from './console.mjs';
 import { packSources } from './sources.mjs';
 
+// process.loadEnvFile came in 20.12; on an older Node the failure would not name the cause
+const NODE_NEEDED = [20, 12];
 const UPDATE_LIMIT_MS = 15 * 60_000;
 const START_LIMIT_MS = 5 * 60_000;
 const POLL_MS = 5_000;
@@ -112,6 +114,10 @@ async function ensureRunning(client, applicationId) {
 }
 
 async function main() {
+    const [major, minor] = process.versions.node.split('.').map(Number);
+    if (major < NODE_NEEDED[0] || (major === NODE_NEEDED[0] && minor < NODE_NEEDED[1])) {
+        throw new DeployError(`Node.js ${NODE_NEEDED.join('.')} or newer is needed, this is ${process.versions.node}: update Node.js`);
+    }
     const { values: options } = parseArgs({
         options: {
             'project-dir': { type: 'string' },
